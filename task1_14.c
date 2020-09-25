@@ -9,7 +9,7 @@ bool f1(int n, int m) {
 
 int main() { 
 
-int a,b; 
+int a,b; /// some changes
 scanf("%d", &a); scanf("%d", &b); 
 bool even_n = even_num(a); 
 printf("%d", even_n); 
