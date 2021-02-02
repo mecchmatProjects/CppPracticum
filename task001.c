@@ -2,6 +2,7 @@
 
 int main() {
     
+    // fix the bug
     double c;
     printf("Enter t in celsius degrees: ");
     scanf("%lf",&c);
