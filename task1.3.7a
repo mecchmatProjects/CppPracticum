@@ -1,0 +1,55 @@
+#include <stdio.h>
+#include <float.h> // DBL_EPSILON, DBL_MAX
+#include <math.h> //fabs
+#include <stdbool.h> // bool type
+
+
+bool isNearlyZero(double x){
+   return (fabs(x)<2*DBL_EPSILON); // return (fabs(x)<0.000001); fabs(x) =|x|
+}
+
+bool isNearlyEqual(double x, double y){
+   return (fabs(x-y)<2*DBL_EPSILON);
+
+}
+
+
+void printSquareEquation(double a, double b, double c){
+    if(isNearlyZero(a)){
+      if(isNearlyZero(b)){
+        if(isNearlyZero(c)){ printf("Infinity of solutions\n"); }
+        else{printf("No solutions\n");}
+      }
+      else{
+         double x = -c/b;
+         printf("x=%lf\n",x); 
+      }
+   }
+   else{
+      double d = b*b - 4*a*c; 
+      if(isNearlyZero(d)){
+         double x = -b/(2*a);
+          printf("x1=x2=%lf\n",x); 
+      }
+      else if(d>0){
+         double x1 = (-b - sqrt(d))/2/a;
+         double x2 = (-b + sqrt(d))/2/a;
+         printf("x1=%lf, x2 =%lf\n",x1,x2); 
+      }
+   }
+}
+
+int main(){
+   double a,b,c;
+   printf("a=");
+   scanf("%lf",&a);
+   printf("b=");
+   scanf("%lf",&b);
+   printf("c=");
+   scanf("%lf",&c);
+ 
+   printSquareEquation(a,b,c);
+   
+
+
+}
