@@ -15,9 +15,9 @@ bool isNearlyEqual(double x, double y){
 
 
 int printSquareEquation(double a, double b, double c){
-    if(isNearlyZero(a)){
-      if(isNearlyZero(b)){
-        if(isNearlyZero(c)){  
+    if(isNearlyZero(a)){ // a==0
+      if(isNearlyZero(b)){ // b==0
+        if(isNearlyZero(c)){   // c==0
            printf("Infinity of solutions\n"); 
            return -1; 
         }
@@ -32,7 +32,7 @@ int printSquareEquation(double a, double b, double c){
          return 1;
       }
    }
-   else{
+   else{ //a!=0
       double d = b*b - 4*a*c; 
       if(isNearlyZero(d)){
          double x = -b/(2*a);
@@ -69,7 +69,4 @@ int main(){
    scanf("%lf",&c);
  
    printSquareEquation(a,b,c);
-   
-
-
 }
