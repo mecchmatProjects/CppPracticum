@@ -2,7 +2,7 @@
 #include <cmath>
 
 using namespace std;
-/*
+
 bool isNearlyZero(double x)
 {
 	return (fabs(x) < 2 * DBL_EPSILON);
@@ -37,4 +37,3 @@ int main()
 
 	cout << "Result = " << fixed << isReLu_derivative(x, a);
 }
-*/
