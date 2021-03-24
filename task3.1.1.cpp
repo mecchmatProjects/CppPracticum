@@ -2,7 +2,7 @@
 #include <stdio.h> 
 #include <string.h> 
 #include <stdlib.h> 
-void func(char * str) { 
+void funcC(char * str) { 
 char buff[255]; 
 int j=0; 
 int i=0; 
@@ -43,10 +43,26 @@ for (int i = 0; i < strlen(str); i++) {
 cout << buf; 
 }
 
+
+void funcB(char *str) {
+    std::string output;
+    for (int i = 0; i < strlen(str); ++i) {
+        if (str[i] == '+' && i + 1 < strlen(str) && isdigit(str[i + 1])) {
+            continue;
+        }
+        output += str[i];
+    }
+    cout << output;
+}
+
+
+
 int main() {
  char lol[100]; 
- fgets(lol, 255, stdin); 
+  cin.getline(lol, 255);
+ //fgets(lol, 255, stdin); 
  //gets(lol); 
+
  func(lol); 
 return 0; 
 }
