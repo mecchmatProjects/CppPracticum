@@ -21,6 +21,7 @@ int createDoubleFile(const char* fname){
     for(int i=0;i<n;++i){
       printf("x_%d=",i);
       scanf("%lf",&x);
+      // to be carefull
       if(fwrite(&x,sizeof(x),1,fp)!=1){
         fprintf(stderr,"error writing");
         fclose(fp);
@@ -54,7 +55,7 @@ int readDoubleFile(const char* fname){
 }
  
 //C11 and MS secure
-/*
+/* // https://docs.microsoft.com/en-us/cpp/c-runtime-library/reference/fopen-s-wfopen-s?view=msvc-160
 int readDoubleFile2(const char* fname){
 FILE *fp;
 int err; // errno_t is NOT supported in gcc!!!
@@ -100,7 +101,9 @@ int createG(const char* f1, const char*f2, double a){
   
    FILE * gp;
     gp = fopen(f2, "wb");
-    if(fp==NULL) {
+    if(fp==NULL) {result of reading 1, x[0]=4.000000,  
+result of reading 1, x[1]=4.000000,  
+read 2 doubles
         fprintf(stderr, "Error write file %s", f2);
         return -1;
     }
@@ -227,8 +230,11 @@ int midifyF2(const char* f1, double a){
         fprintf(stderr, "Error reading file %s", f1);
         return -1;
     }
-  
-   FILE* tmp = tmpfile(); // tmpfile_s()
+   
+   
+   //FILE* tmp = tmpfile(); // tmpfile_s()
+    char* tmp_name = tmpnam(NULL);
+    FILE* tmp = fopen(tmp_name, "wb");
     if (tmp == NULL)
     {
         puts("Unable to create temp file");
@@ -245,13 +251,16 @@ int midifyF2(const char* f1, double a){
       if(fabs(x)>=a){
           r=fwrite(&x,sizeof(double),1,tmp);
           if(r!=1) {
-             fprintf(stderr, "Error write file %s", tmpnam(NULL));
+             fprintf(stderr, "Error write file %s", tmp_name);
          }
       }
    }
-
+   
    fclose(fp);
-   rename(tmpnam(NULL),f1); //  tmpnam_s(NULL)
+   fclose(tmp); 
+   remove(f1);  
+   rename(tmp_name,f1); //  tmpnam_s(NULL)
+     
 }
 
 
@@ -275,7 +284,7 @@ int main(){
   r = readDoubleFile(gname);
   printf("\nread %d doubles",r);
   
-  midifyF1(fname,a);
+  midifyF2(fname,a);
   r = readDoubleFile(fname);
   printf("\nread %d doubles",r);
 

@@ -6,6 +6,7 @@ typedef struct Rect{
   unsigned num;
   float x;
   float y;
+
 } Rect;
 
 int vvod(Rect* r){
@@ -40,17 +41,17 @@ unsigned maxrect(char * fname){
   unsigned n;
   Rect r1;
   FILE* f = fopen(fname, "rb");
-  int maxv = 0;
+  double maxarea = 0;
   while(!feof(f)){
      
-     int r =fread(&r1,1,sizeof(r1),f);
-     if(r<sizeof(r1)) break;
+     int r =fread(&r1,sizeof(r1),1,f);
+     if(r<1) break;
 
      float w = r1.x;
      float h = r1.y;
      
-     if(w*h>maxv){
-        maxv = w*h;
+     if(w*h>maxarea){
+        maxarea = w*h;
         n = r1.num;
     }     
 
@@ -58,6 +59,7 @@ unsigned maxrect(char * fname){
 
   fclose(f);
 
+  printf("Max sqr = %lf", maxarea);
   return n;
 }
 
