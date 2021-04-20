@@ -46,5 +46,5 @@ int main(){
   cout<<inp_str; 
   int k = sl_word(inp_str);
 
-  cout<< "\n The words with sama start/end = "<<k<<endl;
+  cout<< "\n The words with same start/end = "<<k<<endl;
 }

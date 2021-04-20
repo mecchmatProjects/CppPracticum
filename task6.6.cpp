@@ -32,7 +32,7 @@ string first_word(const string str){
 
 
 
-string first_word(const string str, string delimeter){
+string first_word(const string str, const string delimeter){
    
    size_t i=0;
    size_t n = str.length();
@@ -44,9 +44,9 @@ string first_word(const string str, string delimeter){
        return "";
    } 
 
-   string res="";
+   string res = "";
    while(i<n && delimeter.find(str[i])==string::npos){
-      res.push_back(str[i]);
+      res.push_back(str[i]); // res += str[i]
       i++;
    }
    return res;
@@ -54,7 +54,7 @@ string first_word(const string str, string delimeter){
 
 int main(){
 
- cout<< first_word(string("  dsf fsdf f")," ,.")<<endl;
+ cout<< first_word(string("  dsf! fsdf f")," ,.:?!")<<endl;
 
  string inp; 
  getline(cin,inp);

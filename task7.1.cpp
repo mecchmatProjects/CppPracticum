@@ -147,7 +147,7 @@ int main(){
      // std::cout<<"i="<<i; 
       i++;
      // r.show();
-     // greg.show();
+      greg.show();
   }while(!(r<eps));
 
   greg.show();

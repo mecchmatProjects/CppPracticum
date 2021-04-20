@@ -9,26 +9,29 @@
 using namespace std;
 
 int main(){
+ char fname[20] = "deutsch.txt";
+ ifstream f(fname);
 
- ifstream f("deutsch.txt");
-
- string Artikles[] = {"der", "das", "die", "dem"};
+ string Artikles[] = {"der", "das", "die",
+                     // "ein", "einen", "einem", "einer",
+                     // "den", "der", "dem"
+                     };
 
  string buf;
  bool art = false; 
 
- ofstream f2("deutsch2.txt"); 
+ ofstream f2("tmp.txt"); 
  while(f>>buf){
   //  cout<<"buf"<<buf;
 
     if(art) {
        buf[0] = toupper(buf[0]);
     }
-    cout<<buf<<" ";
+    clog<<buf<<" ";
     f2<<buf<<" ";
 
-    art =false; 
-    for(int i=0;i<4;i++){
+    art = false; 
+    for(int i=0;i<3;i++){
        if(buf==Artikles[i]){
           art = true;
           break;
@@ -39,4 +42,8 @@ int main(){
 
  f.close(); 
  f2.close();
+
+ //remove(fname);
+ rename("tmp.txt", fname);
+
 }
