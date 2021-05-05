@@ -5,7 +5,19 @@
 
 #include <iostream>
 #include <cmath>
+
+#include <exception>
+
 using namespace std;
+
+
+class ZeroDenominator : public exception{
+   public:
+   const char* what(){
+       return "Denominator should be non zero!";
+   }
+};
+
 
 //struct
 class Rat{
@@ -20,6 +32,9 @@ class Rat{
    Rat(){nominator=1; denominator=1;}
 
    Rat(long long int x, long long unsigned y): nominator(x),denominator(y){
+      if(denominator==0) { // denominator <> 0 !!! exception
+           throw ZeroDenominator();
+       }
       reduce();
    }
    //Rat(int x, unsigned y){ nominator=x;denominator =y;}
@@ -28,6 +43,9 @@ class Rat{
    int input(){
        cout<<"Input n,m:";
        cin>>nominator>>denominator;
+       if(denominator==0) { // denominator <> 0 !!! exception
+           throw ZeroDenominator();
+       }
     }
 
    void output(){
@@ -39,7 +57,9 @@ class Rat{
    }
 
    int setDenom(long long unsigned denominator){
-      if(denominator==0) return -1;
+       if(denominator==0) { // denominator <> 0 !!! exception
+           throw ZeroDenominator();
+       }
       this->denominator = denominator; //   
       return 0; 
    } 
@@ -62,7 +82,11 @@ class Rat{
    double value12(){
        return sqrt(12.0*(double)nominator/denominator);
    }
-   
+
+
+  friend int saveToFile(const char* fname, const Rat & r);
+  friend int readFromFile(const char* fname, Rat & r);
+  
 };
 
 

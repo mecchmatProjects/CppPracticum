@@ -20,7 +20,7 @@ Polynom::Polynom(size_t n, double * arr){
 }
 
 Polynom::~Polynom(){
-   delete[] p;
+   if(n) delete[] p;
 }
 
 Polynom::Polynom(const Polynom & a){
@@ -32,7 +32,8 @@ Polynom::Polynom(const Polynom & a){
 
 }
 
-Polynom Polynom::operator=(const Polynom & a){
+Polynom & Polynom::operator=(const Polynom & a){
+   if(n>0) delete[] p; 
    this->n=a.n;
    p = new double[a.n];
    for(int i=0;i<n;++i){
@@ -101,10 +102,12 @@ int main(){
    double a[5] = {1,2,3};
    Polynom p2(3,a);
   
-   Polynom p1(p2); // p1=p2
+   Polynom p1(p2); // 
+   p3=p2;
    
    p2.show();
    p1.show();
+   p3.show();
   
    saveFile("p1.dat",p2);
    readFile("p1.dat",p3);

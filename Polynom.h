@@ -21,14 +21,14 @@ class Polynom{
    double *p;
    
    public:
-   Polynom(){}
+   Polynom(){n=0;}
    Polynom(size_t n);
 
    Polynom(size_t n, double *arr); // P(2,1.0,1.0);
 
    ~Polynom();
 
-   Polynom operator=(const Polynom & a);
+   Polynom & operator=(const Polynom & a);
  
    Polynom(const Polynom & p);
 
@@ -41,7 +41,5 @@ class Polynom{
    friend int saveFile(const char* fname,const Polynom & P);
    friend int readFile(const char* fname,Polynom & P);
 };
-
-
 
 #endif //_POLYNOM_H_

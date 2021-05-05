@@ -120,7 +120,7 @@ int main(){
    //p.show();
 
    Phonebook ph;
-   ph.setFile(string("hpones.txt"));
+   ph.setFile(string("phones.txt"));
    int n;
    cin>>n;
    for(int i=0;i<n;++i){

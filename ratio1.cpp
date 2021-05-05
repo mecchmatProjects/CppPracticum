@@ -1,6 +1,7 @@
 
 #include "ratio1.h"
 
+#include <fstream>
 
 Rat Rat::add(const Rat & other){
   
@@ -49,6 +50,45 @@ bool Rat::less(const Rat& r){
     return (nominator*r.denominator < denominator*r.nominator); 
 }
 
+
+int saveToFile(const char* fname, const Rat & r){
+   fstream f;
+   f.open(fname,ios::app);
+   if (f.bad()){
+      cerr<<"bad file"; 
+      throw "Bad file"; 
+      //return -1;
+   }
+   try{
+     f<<r.nominator<<" "<<r.denominator<<endl;     
+   }
+   catch(...){
+      cerr<<"Error writing to file "<<fname;
+      throw 1; 
+   }
+   f.close();
+   return 0;
+}
+
+int readFromFile(const char* fname, Rat & r){
+   fstream f;
+   f.open(fname,ios::in);
+   if (f.bad()){
+           throw "Bad file"; 
+   }
+   try{
+     f>>r.nominator>>r.denominator;
+   }
+   catch(...){
+      cerr<<"Error reading from file "<<fname;
+      throw 12;
+   }
+   f.close();
+   return 0;
+
+}
+
+
 int main(){
 
    Rat t1(2,4),t2,t3;
@@ -57,10 +97,38 @@ int main(){
    t1.output();
 
    t2.setNom(1);
-   t2.setDenom(3);
+   try{
+      t2.setDenom(0);    
+   }
+   catch(ZeroDenominator e){
+     cout<<e.what(); 
+     t2.setDenom(3);
+   }
    cout<<endl;    
    t3 = t1.add(t2);
    t3.output();
+   try{
+    saveToFile("rat1.txt",t3);
+   }
+   catch(char* s){
+      cerr<<"Bad file";
+   }
+   catch(int x){
+      cerr<<"Bad format";  
+   } 
+
+   Rat t4; 
+   try{
+     readFromFile("rat1.txt",t4);
+     t4.output();
+   }
+   catch(char* s){
+      cerr<<"Bad file";
+   }
+   catch(int x){
+      cerr<<"Bad format";  
+   } 
+
 /*
    Rat mas[10]; 
 
@@ -80,7 +148,7 @@ int main(){
   m1.output();
 
 */
-  double eps; 
+/*  double eps; 
 
   cin>>eps;
 
@@ -107,6 +175,7 @@ int main(){
 
   s.output();
   cout<<s.value12();
+*/
 }
 
 
