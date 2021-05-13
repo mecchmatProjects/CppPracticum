@@ -88,7 +88,7 @@ int readFromFile(const char* fname, Rat & r){
 
 }
 
-
+/*
 int main(){
 
    Rat t1(2,4),t2,t3;
@@ -175,9 +175,9 @@ int main(){
 
   s.output();
   cout<<s.value12();
-*/
-}
 
+}
+*/
 
 
 

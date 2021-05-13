@@ -75,6 +75,10 @@ class Rat{
 
    bool less(const Rat& r);
 
+   bool operator>(const Rat & r) {
+    return (nominator*r.denominator > denominator*r.nominator); 
+   }
+
    bool greaterReal(double eps){
         return (double)nominator/denominator>eps;
    }
@@ -83,6 +87,7 @@ class Rat{
        return sqrt(12.0*(double)nominator/denominator);
    }
 
+   
 
   friend int saveToFile(const char* fname, const Rat & r);
   friend int readFromFile(const char* fname, Rat & r);

@@ -31,9 +31,7 @@ class Human{
           cout << PIB << ", " << age <<"," << gen<<endl;
 
   }
-        
-
-
+       
   friend ostream& operator<<(ostream & ost, const Human & h){
           const char* gen = h.gender?"Male":"Female";
           ost << h.PIB << ", " << h.age <<"," << gen<<endl;

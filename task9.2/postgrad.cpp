@@ -83,7 +83,7 @@ for(int i=0;i<n;i++){
     }
    else{  
         mas[i]->show();     
-        std::cout<<"noncast";
+        std::cout<<"not casted to lecturer";
    }
 }
 
