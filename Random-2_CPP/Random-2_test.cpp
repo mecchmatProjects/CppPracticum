@@ -10,40 +10,40 @@ AlgorithmParametersCpp _params(int a, int c, int m, int s0) {
 }
 
 void reportError(char* msg) {
-	printf("Помилка тесту: %s\n", msg);
+	printf("Pomulka testy: %s\n", msg);
 	errors_counter++;
 }
 
 void test_checkParametersConds() {
-	// m - найб?льше з вказаних натуральних значень
+	// m - Naybilshe z vkazanuh naturalnuh znachen
 	if (_params(1, 1, 1, 1).checkParametersConds() || _params(2, 1, 1, 1).checkParametersConds()
 		|| _params(1, 2, 1, 1).checkParametersConds() || _params(1, 1, 1, 2).checkParametersConds()) {
-		reportError("checkParametersConds(): дозволяє m, що не є максимальним значенням");
+		reportError("checkParametersConds(): dozvolaye m, shcho ne e maksumalnum znachennam");
 	}
 	if (_params(1, 1, -1, 1).checkParametersConds()) {
-		reportError("checkParametersConds(): дозволяє в?д'ємне m");
+		reportError("checkParametersConds(): dozvolae videmne m");
 	}
 
-	// a) m = 2^k, де k - натуральне число:
+	// a) m = 2^k,  de k -- naturalne chuslo:
 	if (_params(1, 1, 56, 1).checkParametersConds()) {
-		reportError("checkParametersConds(): дозволяє m, що не є степ?нню дв?йки");
+		reportError("checkParametersConds(): dozvolae m, shcho ne e stepenem 2");
 	}
 
-	// b) c та m - взаємно прост? числа
-	//    (використовуємо те, що m = 2^k)
+	// b) c ta  m - vzaemno prostiа
+	//    (vukorustovue te, shcho m = 2^k)
 	if (_params(1, 2, 256, 1).checkParametersConds()) {
-		reportError("checkParametersConds(): дозволяє с не взаємо просте з m");
+		reportError("checkParametersConds(): dozvolae c ne vzaemno proste z m");
 	}
 
-	// c) (a-1) д?литься на вс? прост? числа, що є д?льниками m
-	//    (використовуємо те, що m = 2^k)
+	// c) (a-1) dilutca na vsi prosti chusla, shcho e dilnukamu m
+	//    (vukorustovuemo te, shco m = 2^k)
 	if (_params(4, 1, 256, 1).checkParametersConds()) {
-		reportError("checkParametersConds(): дозволяє а, що не п?дходить для: (a-1) д?литься на вс? прост? числа, що є д?льниками m");
+		reportError("checkParametersConds(): dozvolae a, shcho ne pidhodut dla ymovu");
 	}
 
-	// d) c*(a-1) д?литься на 4:
+	// d) c*(a-1) dilutca na 4:
 	if (_params(4, 7, 256, 1).checkParametersConds()) {
-		reportError("checkParametersConds(): дозволяє (а,c), що не п?дходить для: c*(a-1) д?литься на 4");
+		reportError("checkParametersConds(): dozvolae(а,c), shco ne pidhodut dla ymovu");
 	}
 }
 
@@ -66,7 +66,7 @@ void test_task3_hash_params() {
 	AlgorithmParametersCpp p2(p1);
 	p2.task3_hash_params();
 	if (p1.getS0() == p0.getS0() && p2.getS0() == p1.getS0()) {
-		reportError("task3_hash_params(): перехешування s0 не спрацювало на подв?йному виклику");
+		reportError("task3_hash_params(): pereheshuvanna s0 ne spratcuvalo na podviynomu vukluky");
 	}
 }
 
@@ -78,11 +78,11 @@ void test_task2_int_rnd() {
 	for (int i = 0; i < num; i++) {
 		int val = gen.task2_int_rnd();
 		if (val == pval) {
-			reportError("task2_int_rnd(): генератор видав попереднє значення");
+			reportError("task2_int_rnd(): generator vudav poperedne znachenna");
 			return;
 		}
 		if (val < 0 || val >= gen.getParams().getM()) {
-			reportError("task2_int_rnd(): генератор видав значення за межами д?апазону");
+			reportError("task2_int_rnd(): generator vudav znachenna za mejamu diapazonu");
 			return;
 		}
 		pval = val;
@@ -96,11 +96,11 @@ void test_task2_double_rnd() {
 	for (int i = 0; i < num; i++) {
 		double val = gen.task2_double_rnd();
 		if (val == pval) {
-			reportError("task2_double_rnd(): генератор видав попереднє значення");
+			reportError("task2_double_rnd(): generator vudav poperedne znachenna");
 			return;
 		}
 		if (val < 0.0 || val >= 1.0) {
-			reportError("task2_double_rnd(): генератор видав значення за межами д?апазону");
+			reportError("task2_double_rnd(): generator vudav znachenna za mejamu diapazonu");
 			return;
 		}
 		pval = val;
@@ -133,7 +133,7 @@ int main(char** args) {
 	cross_test_gen();
 
 	if (errors_counter > 0) {
-		printf("Знайден? помилки в робот? С модуля: %d", errors_counter);
+		printf("Znaydeni pomulku v roboti C modula: %d", errors_counter);
 	}
 	else {
 		printf("Tests ok");

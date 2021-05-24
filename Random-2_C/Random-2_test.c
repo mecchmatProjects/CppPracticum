@@ -14,40 +14,40 @@ Parameters _params(int a, int c, int m, int s0) {
 }
 
 void reportError(char* msg) {
-	printf("Помилка тесту: %s\n", msg);
+	printf("Pomulka testy: %s\n", msg);
 	errors_counter++;
 }
 
 void test_checkParametersConds() {
-	// m - ­ Найбільше з вказаних натуральних значень
+	// m - ­ Naybilshe z vkazanuh naturalnuh znachen
 	if (checkParametersConds(_params(1, 1, 1, 1)) || checkParametersConds(_params(2, 1, 1, 1))
 		|| checkParametersConds(_params(1, 2, 1, 1)) || checkParametersConds(_params(1, 1, 1, 2))) {
-		reportError("checkParametersConds(): дозволяє m, що не є максимальним значенням");
+		reportError("checkParametersConds(): dozvolaye m, shcho ne e maksumalnum znachennam");
 	}
 	if (checkParametersConds(_params(1, 1, -1, 1))) {
-		reportError("checkParametersConds(): дозволяє від'ємне m");
+		reportError("checkParametersConds(): dozvolae videmne m");
 	}
 
-	// a) m = 2^k, де k -- натуральне число
+	// a) m = 2^k, de k -- naturalne chuslo
 	if (checkParametersConds(_params(1, 1, 56, 1))) {
-		reportError("checkParametersConds(): дозволяє m, що не є степенню 2");
+		reportError("checkParametersConds(): dozvolae m, shcho ne e stepenem 2");
 	}
 
-	// b) c та  m - взаємно прості числа 
-	//    (використовує те, що m = 2^k)
+	// b) c ta  m - vzaemno prosti 
+	//    (vukorustovue te, shcho m = 2^k)
 	if (checkParametersConds(_params(1, 2, 256, 1))) {
-		reportError("checkParametersConds(): дозволяє с не взаємно просте з m");
+		reportError("checkParametersConds(): dozvolae c ne vzaemno proste z m");
 	}
 
-	// c) (a-1) ділиться на всі прості числа, що є дільниками m
-	//    (використовуємо те, що m = 2^k)
+	// c) (a-1) dilutca na vsi prosti chusla, shcho e dilnukamu m
+	//    (vukorustovuemo te, shco m = 2^k)
 	if (checkParametersConds(_params(4, 1, 256, 1))) {
-		reportError("checkParametersConds(): дозволяє а, що не підходить для умови");
+		reportError("checkParametersConds(): dozvolae a, shcho ne pidhodut dla ymovu");
 	}
 
-	// d) c*(a-1) ділиться на 4:
+	// d) c*(a-1) dilutca na 4:
 	if (checkParametersConds(_params(4, 7, 256, 1))) {
-		reportError("checkParametersConds(): дозволяє(а ,c), що не підходить для умови");
+		reportError("checkParametersConds(): dozvolae( ,c), shco ne pidhodut dla ymovu");
 	}
 }
 
@@ -77,7 +77,7 @@ void test_task3_hash_params() {
 	p2.s0 = p1.s0;
 	task3_hash_params(&p2);
 	if (p1.s0 == p0.s0 && p2.s0 == p1.s0) {
-		reportError("task3_hash_params(): перехешування s0 не спрацювало на подвійному виклику");
+		reportError("task3_hash_params(): pereheshuvanna s0 ne spratcuvalo na podviynomu vukluky");
 	}
 }
 
@@ -91,18 +91,18 @@ void test_task2_int_rnd() {
 		for (int i = 0; i < num; i++) {
 			int val = task2_int_rnd(&params);
 			if (val == pval) {
-				reportError("task2_int_rnd(): генератор видав попереднє значення");
+				reportError("task2_int_rnd(): generator vudav poperedne znachenna");
 				return;
 			}
 			if (val < 0 || val >= params.m) {
-				reportError("task2_int_rnd(): генератор видав значення за межами діапазону");
+				reportError("task2_int_rnd(): generator vudav znachenna za mejamu diapazonu");
 				return;
 			}
 			pval = val;
 		}
 	}
 	else {
-		reportError("task2_int_rnd(): помилка створення параметрів для тесту");
+		reportError("task2_int_rnd(): pomulka stvorenna parametriv dla testu");
 	}
 }
 
@@ -115,18 +115,18 @@ void test_task2_double_rnd() {
 		for (int i = 0; i < num; i++) {
 			double val = task2_double_rnd(&params);
 			if (val == pval) {
-				reportError("task2_double_rnd(): ЈҐ­Ґа в®а ўЁ¤ ў Ї®ЇҐаҐ¤­у §­ зҐ­­п");
+				reportError("task2_double_rnd(): generator vudav poperedne znachenna");
 				return;
 			}
 			if (val < 0.0 || val >= 1.0) {
-				reportError("task2_double_rnd(): ЈҐ­Ґа в®а ўЁ¤ ў §­ зҐ­­п §  ¬Ґ¦ ¬Ё ¤? Ї §®­г");
+				reportError("task2_double_rnd(): generator vudav znachenna za mejamu diapazonu");
 				return;
 			}
 			pval = val;
 		}
 	}
 	else {
-		reportError("task2_double_rnd(): Ї®¬Ё«Є  бвў®аҐ­­п Ї а ¬Ґва?ў ¤«п вҐбвг");
+		reportError("task2_double_rnd(): pomulka stvorenna parametriv dla testu");
 	}
 }
 
@@ -151,7 +151,7 @@ int main(char** args) {
 	test_task3_hash_params();
 
 	if (errors_counter > 0) {
-		printf("‡­ ©¤Ґ­? Ї®¬Ё«ЄЁ ў а®Ў®в? ‘ ¬®¤г«п: %d", errors_counter);
+		printf("Znaydeni pomulku v roboti C modula: %d", errors_counter);
 	}
 	else {
 		printf("Tests ok");

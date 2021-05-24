@@ -36,17 +36,17 @@ bool checkParametersConds(Parameters params) {
 	int m = params.m;
 	int s0 = params.s0;
 
-	// m має бути натуральним числом, та для "a) m = 2^k, де k - натуральне число" (k>0)
+	// m mae bytu naturalnum chuslom, ta dla "a) m = 2^k, de k - natyralne chuslo" (k>0)
 	if (a < 1 || c < 1 || m < 2 || s0 < 0) {
 		return false;
 	}
 
-	// m має бути максимальним серед параметрів
+	// m mae bytu maksumalnum sered parametriv
 	if (a >= m || c >= m || s0 >= m) {
 		return false;
 	}
 
-	// a) m = 2^k, де k - натуральне число:
+	// a) m = 2^k, de k - natyralne chuslo:
 	int val = m;
 	while (val > 1) {
 		if (val % 2 != 0) {
@@ -55,24 +55,24 @@ bool checkParametersConds(Parameters params) {
 		val /= 2;
 	}
 
-	// b) c та m - взаємно прості числа
-	//    (використовуємо те, що m = 2^k)
+	// b) c ta m - vzaemnoprosti chusla
+	//    (vukorustovye te, shcho m = 2^k)
 	if (c % 2 == 0) {
 		return false;
 	}
 
-	// c) (a-1) ділиться на всі прості числа, що є дільниками m
-	//    (використовуємо те, що m = 2^k)
+	// c) (a-1) dilutca na vsi prosti chusla, shcho e dilnukamu m
+	//    (vukorustovyemo te, shcho m = 2^k)
 	if (a <= 2 || a % 2 == 0) {
 		return false;
 	}
 
-	// d) c*(a-1) ділиться на 4:
+	// d) c*(a-1) dilutca na 4:
 	if ((c * (a - 1)) % 4 != 0) {
 		return false;
 	}
 
-	// всі умови успішно перевірено:
+	//vsi ymovu yspishno perevireno:
 	return true;
 }
 
